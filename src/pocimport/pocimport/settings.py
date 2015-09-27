@@ -15,9 +15,14 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+from django.contrib.messages import constants as message_constants
+MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
+                message_constants.INFO: 'info',
+                message_constants.SUCCESS: 'success',
+                message_constants.WARNING: 'warning',
+                message_constants.ERROR: 'danger',
+}
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'lut1=e9dj)s_wwsm06nq7w=_9=3^xys4w@783+)1bnl_)*+&ja'
@@ -105,6 +110,7 @@ STATIC_URL = '/static/'
 
 
 BROKER_URL = 'amqp://guest:guest@localhost:5672//'
-CELERY_ACCEPT_CONTENT = ['json',]
+CELERY_ACCEPT_CONTENT = ('json', )
+CELERY_TASK_SERIALIZER = 'json'
 CELERY_IGNORE_RESULT = True
 
